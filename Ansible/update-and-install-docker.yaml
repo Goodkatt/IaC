@@ -1,0 +1,97 @@
+- hosts: newservers
+  become: True
+  become_method: sudo
+  vars:
+    password_devops: max_max_max_super_max
+  tasks:
+  - name: update packages
+    yum:
+     name: '*'
+     state: latest
+  - name: Add the user 'admin' with a primary group of 'wheel'
+    user:
+      name: admin
+      groups: wheel
+      password: "{{ password_devops | password_hash('sha512') }}"
+      shell: /bin/bash
+      create_home: yes
+      append: no
+  - name: Configure sshd
+    lineinfile:
+      path: "/etc/ssh/sshd_config"
+      regex: '^PasswordAuthentication'
+      line: "PasswordAuthentication yes"
+      state: present
+  - name: Stop sshd.
+    service:
+      name: sshd
+      state: stopped
+      enabled: True
+  - name: Start sshd
+    service:
+      name: sshd
+      state: started
+      enabled: True
+  - name: Install Docker
+    yum:
+      name: docker
+      state: latest
+  - name: Start Docker
+    service:
+      name: docker
+      state: started
+      enabled: True
+  - name: Register uname -m
+    command: uname -m
+    register: uname_m
+  - name: Register uname -s
+    command: uname -s
+    register: uname_s
+  - name: Download Docker Compose
+    command: curl -L https://github.com/docker/compose/releases/download/1.26.0/docker-compose-"{{ uname_s.stdout }}"-"{{ uname_m.stdout }}"  -o /usr/local/bin/docker-compose
+  - name: Install Docker Compose
+    command: mv /usr/local/bin/docker-compose /usr/bin/docker-compose
+  - name: Install Docker Compose
+    command: chmod +x /usr/bin/docker-compose
+  - name: Install telnet
+    ansible.builtin.yum:
+      name:
+        - telnet
+        - tcpdump
+        - httpd
+      state: present
+  - name: Stop httpd
+    ansible.builtin.service:
+      name: httpd
+      state: stopped
+  - name: Start httpd
+    ansible.builtin.service:
+      name: httpd
+      state: started
+      enabled: True
+  - name: Reload httpd
+    ansible.builtin.service:
+      name: httpd
+      state: reloaded
+  - name: Stop httpd
+    ansible.builtin.service:
+      name: httpd
+      state: stopped
+      enabled: False
+  - name: Install python3 for Docker
+    ansible.builtin.service:
+      name: python3
+  - name: Install python36 for Docker
+    ansible.builtin.service:
+      name: python3.7
+  - name: Install Docker Compose
+    ansible.builtin.pip:
+      name:
+        - docker-compose
+  - name: Run nginx container
+    ansible.builtin.docker_container:
+      name: nginx
+      image: nginx
+      exposed_ports:
+        - 80
+      ports: 80:80

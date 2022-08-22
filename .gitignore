@@ -1,0 +1,11 @@
+.terraform/*
+/.terraform/*
+credentials.tf
+.terraform.lock.hcl
+*.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.backup
+/Ansible/hosts
+**.terraform/*
+*.terraform/*
+*terraform/*
