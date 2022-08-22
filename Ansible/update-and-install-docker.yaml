@@ -88,6 +88,7 @@
     ansible.builtin.pip:
       name:
         - docker-compose
+# Default Docker Images for mongodb and nginx
   - name: Run nginx container
     ansible.builtin.docker_container:
       name: nginx
@@ -95,3 +96,10 @@
       exposed_ports:
         - 80
       ports: 80:80
+  - name: Run mongodb container
+    ansible.builtin.docker_container:
+      name: mongodb
+      image: mongo
+      exposed_ports:
+        - 27017
+      ports: 27017:27017
