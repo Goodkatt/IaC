@@ -1,0 +1,13 @@
+- hosts: newservers
+  become: True
+  become_method: sudo
+
+  tasks: 
+  - name: Build and push image to public dockerhub repo
+    ansible.builtin.docker_image:
+      build: 
+        path: /home/ec2-user/deployment-01-starting-setup/
+      name: awsgorkem1/node-example-2
+      tag: latest
+      push: True
+      source: build
