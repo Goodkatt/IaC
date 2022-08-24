@@ -1,0 +1,21 @@
+- hosts: newservers
+  become: True
+  become_method: sudo
+  vars: 
+    maingroups: 
+      - wheel
+      - docker
+    mainusers: 
+      - grkm
+
+  tasks: 
+  - name: adduser to groups
+    ansible.builtin.user:
+      name: admin
+      groups:
+        - wheel
+        - docker
+      append: yes
+  - name: Reboot the machine
+    ansible.builtin.reboot:
+        
