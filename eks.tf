@@ -1,4 +1,4 @@
-/*
+
 
 resource "aws_eks_cluster" "eks-cluster" {
   name = "eks-cluster"
@@ -23,4 +23,4 @@ resource "aws_eks_cluster" "eks-cluster" {
     value = aws_eks_cluster.eks-cluster.certificate_authority[0].data
   }
 
-  */
+  

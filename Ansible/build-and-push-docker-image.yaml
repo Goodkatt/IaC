@@ -8,6 +8,7 @@
       build: 
         path: /home/ec2-user/deployment-01-starting-setup/
       name: awsgorkem1/node-example-2
+#Keep rebuilding the image and updating the tag to push newer image onto Docker Hub
       tag: latest
       push: True
       source: build
