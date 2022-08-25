@@ -1,1 +1,4 @@
 #Mounting disk to the server
+- hosts: newservers
+  become: True
+  become_method: sudo
