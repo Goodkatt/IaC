@@ -1,0 +1,14 @@
+- hosts: newservers
+  become: True
+  become_method: sudo
+
+  tasks: 
+  - name: Run nginx container
+    ansible.builtin.docker_container:
+      name: nginx
+      image: nginx
+      exposed_ports:
+        - 80
+      ports: 80:80
+      volumes: 
+        - /root/test:/usr/share/nginx/html
