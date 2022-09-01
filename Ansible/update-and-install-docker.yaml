@@ -103,3 +103,7 @@
       exposed_ports:
         - 27017
       ports: 27017:27017
+  - name: Install kubetctl
+    ansible.builtin.shell: curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+
+#Continue https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/
