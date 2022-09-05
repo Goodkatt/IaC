@@ -1,0 +1,14 @@
+- hosts: newservers
+  become: True
+  become_method: sudo
+
+  tasks:
+  - name: Update Client Alive Interval Time
+    ansible.builtin.lineinfile:
+      path: /etc/ssh/sshd_config
+      regexp: '^#ClientAliveInterval'
+      line: ClientAliveInterval 5000
+  - name: Restart sshd
+    ansible.builtin.service:
+      name: sshd
+      state: restarted
