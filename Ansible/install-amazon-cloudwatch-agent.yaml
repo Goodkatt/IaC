@@ -15,3 +15,14 @@
     ansible.builtin.service:
       name: amazon-cloudwatch-agent
       state: restarted
+  - name: Register uname -m
+    ansible.builtin.command: uname -m
+    register: uname_m
+  - name: Register uname -s
+    ansible.builtin.command: uname -s
+    register: uname_s
+  - name: Curl kubectl
+    ansible.builtin.command: curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/"{{ uname_s.stdout }}"/amd64/kubectl"
+  - name: Install kubectl
+    ansible.builtin.command: install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+#Fix the errors in command to complete kubetctl installation
