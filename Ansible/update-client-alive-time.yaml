@@ -12,3 +12,5 @@
     ansible.builtin.service:
       name: sshd
       state: restarted
+
+#Will add the configuration json file soon
