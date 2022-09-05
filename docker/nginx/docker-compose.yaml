@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  portainer:
+    image: portainer/portainer-ce:2.9.3
+    container_name: portainer
+    ports:
+      - 9443:9443
+      - 8000:8000
+      - 9000:9000
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - 3000:3000
+  prometheus:
+    image: bitnami/prometheus
+    container_name: prometheus
+    volumes:
+      - prometheus_data:/opt/bitnami/prometheus/data
+      # Custom conf file
+      #- /path/to/custom/conf.yaml:/opt/bitnami/prometheus/conf/prometheus.yaml
+volumes:
+  portainer_data:
+  prometheus_data:

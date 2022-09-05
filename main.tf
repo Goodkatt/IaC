@@ -33,7 +33,7 @@ resource "aws_security_group" "main" {
   ]
   ingress = [
     {
-      cidr_blocks      = ["0.0.0.0/0", ]
+      cidr_blocks      = [var.my_ip]
       description      = ""
       from_port        = 22
       ipv6_cidr_blocks = []
@@ -44,7 +44,7 @@ resource "aws_security_group" "main" {
       to_port          = 22
     },
         {
-      cidr_blocks      = ["0.0.0.0/0", ]
+      cidr_blocks      = [var.my_ip]
       description      = ""
       from_port        = 80
       ipv6_cidr_blocks = []
@@ -55,7 +55,7 @@ resource "aws_security_group" "main" {
       to_port          = 80
     },
             {
-      cidr_blocks      = ["0.0.0.0/0", ]
+      cidr_blocks      = [var.my_ip]
       description      = ""
       from_port        = 0
       ipv6_cidr_blocks = []

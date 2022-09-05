@@ -43,3 +43,4 @@ variable "default_subnet2" {
   type = string
   default = "subnet-0494b68a0ef498359"
 }
+
