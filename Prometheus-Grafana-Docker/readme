@@ -1,0 +1,2 @@
+- Give Prometheus container name on first installation of Grafana it will resolve the DNS since they are in same network
+- Install Node Exporter Full dashboard
