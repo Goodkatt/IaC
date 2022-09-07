@@ -16,7 +16,20 @@ resource "aws_instance" "web" {
   }
  
 }
+/*
+resource "aws_instance" "web2" {
+  ami = var.amazon_linux_arm64_image_id
+  instance_type = var.min_type
+  key_name = var.key_name_aws_gorkem
+  vpc_security_group_ids = [aws_security_group.main.id]
+  subnet_id = var.default_subnet
 
+  tags = {
+    Name = "Default2"
+  }
+ 
+}
+*/
 resource "aws_security_group" "main" {
   egress = [
     {
