@@ -1,4 +1,8 @@
 version: '3.8'
 services:
-  amazon_linux:
-    build: .
+  prometheus:
+    image: bitnami/prometheus
+    ports:
+      - 9090:9090
+    volumes:
+      - /mnt/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
