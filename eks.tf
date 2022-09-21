@@ -1,5 +1,5 @@
 
-
+/*
 resource "aws_eks_cluster" "eks-cluster" {
   name = "eks-cluster"
   role_arn = aws_iam_role.eks-role.arn
@@ -23,4 +23,4 @@ resource "aws_eks_cluster" "eks-cluster" {
     value = aws_eks_cluster.eks-cluster.certificate_authority[0].data
   }
 
-  
+  */

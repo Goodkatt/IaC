@@ -3,7 +3,7 @@ provider "aws" {
   access_key = var.AWS_SECRET_ACCESS_KEY
   secret_key = var.AWS_SECRET_ACCESS_KEY_ID
 }
-
+/*
 resource "aws_instance" "web" {
   ami = var.amazon_linux_arm64_image_id
   instance_type = var.min_type
@@ -16,7 +16,7 @@ resource "aws_instance" "web" {
   }
  
 }
-/*
+
 resource "aws_instance" "web2" {
   ami = var.amazon_linux_arm64_image_id
   instance_type = var.min_type
@@ -26,6 +26,19 @@ resource "aws_instance" "web2" {
 
   tags = {
     Name = "Default2"
+  }
+ 
+}
+
+resource "aws_instance" "web3" {
+  ami = var.amazon_linux_arm64_image_id
+  instance_type = var.min_type
+  key_name = var.key_name_aws_gorkem
+  vpc_security_group_ids = [aws_security_group.main.id]
+  subnet_id = var.default_subnet
+
+  tags = {
+    Name = "Default3"
   }
  
 }

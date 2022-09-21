@@ -1,5 +1,5 @@
 
-
+/*
 resource "aws_iam_role" "eks-role" {
   name = "eks-role"
   tags = {
@@ -30,3 +30,4 @@ resource "aws_iam_role_policy_attachment" "example-AmazonEKSVPCResourceControlle
   role       = aws_iam_role.eks-role.name
 }
   
+*/

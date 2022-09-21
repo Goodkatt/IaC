@@ -1,4 +1,4 @@
-
+/*
 resource "aws_eks_node_group" "node-group" {
   cluster_name = aws_eks_cluster.eks-cluster.id
   node_group_name = "Test"
@@ -48,3 +48,4 @@ resource "aws_iam_role_policy_attachment" "node-role-AmazonEC2ContainerRegistryR
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
   role       = aws_iam_role.node-role.name
 }
+*/
